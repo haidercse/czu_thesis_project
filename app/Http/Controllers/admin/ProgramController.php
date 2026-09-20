@@ -12,8 +12,9 @@ class ProgramController extends Controller
     public function index()
     {
         $programs = Program::with('university')->latest()->paginate(15);
+        $universities = University::orderBy('name')->get();
 
-        return view('backend.pages.programs.index', compact('programs'));
+        return view('backend.pages.programs.index', compact('programs', 'universities'));
     }
 
     public function create()
@@ -34,13 +35,28 @@ class ProgramController extends Controller
             'language_proficiency_requirement' => 'nullable|string|max:255',
         ]);
 
-        Program::create($validated);
+        $program = Program::create($validated);
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Program added.',
+                'data' => $program->load('university'),
+            ]);
+        }
 
         return redirect()->route('admin.programs.index')->with('success', 'Program added.');
     }
 
-    public function edit(Program $program)
+    public function edit(Request $request, Program $program)
     {
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'data' => $program->load('university'),
+            ]);
+        }
+
         $universities = University::orderBy('name')->get();
 
         return view('backend.pages.programs.edit', compact('program', 'universities'));
@@ -59,12 +75,28 @@ class ProgramController extends Controller
 
         $program->update($validated);
 
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Program updated.',
+                'data' => $program->fresh()->load('university'),
+            ]);
+        }
+
         return redirect()->route('admin.programs.index')->with('success', 'Program updated.');
     }
 
-    public function destroy(Program $program)
+    public function destroy(Request $request, Program $program)
     {
         $program->delete();
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'Program deleted.',
+                'id' => $program->id,
+            ]);
+        }
 
         return redirect()->route('admin.programs.index')->with('success', 'Program deleted.');
     }

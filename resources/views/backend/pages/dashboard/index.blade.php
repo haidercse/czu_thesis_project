@@ -40,10 +40,10 @@
                         <div class="s-report-inner pr--20 pt--30 mb-3">
                             <div class="icon"><i class="ti-user"></i></div>
                             <div class="s-report-title d-flex justify-content-between">
-                                <h4 class="header-title mb-0">Users</h4>
+                                <h4 class="header-title mb-0">Active Registered Students</h4>
                             </div>
                             <div class="d-flex justify-content-between pb-2">
-                                <h2>{{ $stats['users'] }}</h2>
+                                <h2>{{ $stats['registered_students'] }}</h2>
                                 <span>Total</span>
                             </div>
                         </div>
@@ -54,10 +54,10 @@
                         <div class="s-report-inner pr--20 pt--30 mb-3">
                             <div class="icon"><i class="ti-files"></i></div>
                             <div class="s-report-title d-flex justify-content-between">
-                                <h4 class="header-title mb-0">Applications</h4>
+                                <h4 class="header-title mb-0">Total Submitted Applications</h4>
                             </div>
                             <div class="d-flex justify-content-between pb-2">
-                                <h2>{{ $stats['applications'] }}</h2>
+                                <h2>{{ $stats['submitted_applications'] }}</h2>
                                 <span>Total</span>
                             </div>
                         </div>

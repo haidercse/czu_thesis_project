@@ -15,7 +15,8 @@ class AdminController extends Controller
         $stats = [
             'universities' => University::count(),
             'programs' => Program::count(),
-            'users' => User::count(),
+            'registered_students' => User::count(),
+            'submitted_applications' => Application::where('status', 'submitted')->count(),
             'applications' => Application::count(),
         ];
 

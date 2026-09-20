@@ -28,13 +28,28 @@ class UniversityController extends Controller
             'website_url' => 'nullable|url',
         ]);
 
-        University::create($validated);
+        $university = University::create($validated);
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'University added.',
+                'data' => $university,
+            ]);
+        }
 
         return redirect()->route('admin.universities.index')->with('success', 'University added.');
     }
 
-    public function edit(University $university)
+    public function edit(Request $request, University $university)
     {
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'data' => $university,
+            ]);
+        }
+
         return view('backend.pages.universities.edit', compact('university'));
     }
 
@@ -48,12 +63,28 @@ class UniversityController extends Controller
 
         $university->update($validated);
 
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'University updated.',
+                'data' => $university->fresh(),
+            ]);
+        }
+
         return redirect()->route('admin.universities.index')->with('success', 'University updated.');
     }
 
-    public function destroy(University $university)
+    public function destroy(Request $request, University $university)
     {
         $university->delete();
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'success' => true,
+                'message' => 'University deleted.',
+                'id' => $university->id,
+            ]);
+        }
 
         return redirect()->route('admin.universities.index')->with('success', 'University deleted.');
     }
