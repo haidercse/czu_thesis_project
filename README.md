@@ -1,26 +1,32 @@
-# Master's Study Programs Finder (CZU Thesis Project)
+# Master's Degree Program Finder & Application Management System
 
-An interactive web application developed as part of a Master's Thesis project at the **Czech University of Life Sciences Prague (CZU)**. This application helps students search, filter, and compare English-taught Master's degree programs available across public universities in the Czech Republic.
+An interactive web application developed as part of a Master's Thesis project at the **Czech University of Life Sciences Prague (CZU)**. This platform helps students search, filter, and compare English-taught Master's degree programs available across public universities in the Czech Republic, as well as manage their application checklists and document submissions.
 
 ---
 
-## 📸 Screenshots & Overview
+## 📸 Screenshots & Application Flow
 
-Here are some screenshots showcasing the application interface and core features:
+Below are the key interfaces of the platform:
 
-### 1. Home / Search Page
-![Home Page](home.png)
-*Search and filter Master's degree programs by field of study, university, and location.*
+### 1. Dashboard
+![Dashboard](./dashboard.png)
+*Overview of student applications, active program statuses, and quick navigation.*
 
-### 2. Program Details View
-![Program Details](program-details.png)
-*Detailed breakdown of curriculum, admission requirements, tuition fees, and language prerequisites.*
+### 2. Program Search & Filtering
+![Program Search](./program_search.png)
+*Search and filter English-taught Master's programs across universities with dynamic filtering.*
 
-### 3. Comparison & Filter System
-![Filter System](./path-to-your-image/filter-system.png)
-*Dynamic live filtering using AJAX to quickly find relevant study programs.*
+### 3. User Authentication
+![Login Page](./login_page.png)
+*Secure user authentication portal for applicants and administrators.*
 
-*(Note: Replace `./path-to-your-image/...` with the actual file paths or GitHub CDN URLs of your PNG images)*
+### 4. Application Checklist
+![Application Checklist](./application_checklist.png)
+*Track required documents, admission deadlines, and application steps.*
+
+### 5. Document Upload Interface
+![Document Upload Interface](./document_upload_interface.png)
+*Interface for uploading, managing, and verifying required application documents.*
 
 ---
 
@@ -28,7 +34,7 @@ Here are some screenshots showcasing the application interface and core features
 
 - **Backend:** PHP, Laravel Framework
 - **Frontend:** Blade Templates, jQuery, JavaScript, CSS3 / Bootstrap
-- **Database:** MySQL / PostgreSQL
+- **Database:** MySQL
 - **Build Tool:** Webpack / Laravel Mix
 
 ---
@@ -37,14 +43,15 @@ Here are some screenshots showcasing the application interface and core features
 
 - 🔍 **Advanced Program Search:** Search study programs by keywords, discipline, or university name.
 - 🎯 **Dynamic Filtering:** Filter results instantaneously based on language, study mode (full-time/part-time), tuition fee, and location.
-- 🎓 **University Comparison:** Easy side-by-side assessment of different academic programs.
-- 📱 **Responsive Design:** Optimized for both mobile devices and desktop views.
+- 📋 **Application Checklist:** Track application status and missing documents step-by-step.
+- 📂 **Document Management:** Easily upload and review necessary academic credentials.
+- 📱 **Responsive Design:** Fully responsive layout optimized for mobile and desktop screens.
 
 ---
 
 ## 💻 Installation & Setup
 
-To run this project locally, follow these steps:
+To run this project locally:
 
 1. **Clone the repository:**
    ```bash
