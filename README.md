@@ -1,62 +1,52 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
+# Master's Study Programs Finder (CZU Thesis Project)
 
-<p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+An interactive web application developed as part of a Master's Thesis project at the **Czech University of Life Sciences Prague (CZU)**. This application helps students search, filter, and compare English-taught Master's degree programs available across public universities in the Czech Republic.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 📸 Screenshots & Overview
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Here are some screenshots showcasing the application interface and core features:
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### 1. Home / Search Page
+![Home Page](./path-to-your-image/home.png)
+*Search and filter Master's degree programs by field of study, university, and location.*
 
-## Learning Laravel
+### 2. Program Details View
+![Program Details](./path-to-your-image/program-details.png)
+*Detailed breakdown of curriculum, admission requirements, tuition fees, and language prerequisites.*
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### 3. Comparison & Filter System
+![Filter System](./path-to-your-image/filter-system.png)
+*Dynamic live filtering using AJAX to quickly find relevant study programs.*
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 1500 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+*(Note: Replace `./path-to-your-image/...` with the actual file paths or GitHub CDN URLs of your PNG images)*
 
-## Laravel Sponsors
+---
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+## 🛠️ Tech Stack
 
-### Premium Partners
+- **Backend:** PHP, Laravel Framework
+- **Frontend:** Blade Templates, jQuery, JavaScript, CSS3 / Bootstrap
+- **Database:** MySQL / PostgreSQL
+- **Build Tool:** Webpack / Laravel Mix
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/)**
-- **[OP.GG](https://op.gg)**
+---
 
-## Contributing
+## 🚀 Key Features
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- 🔍 **Advanced Program Search:** Search study programs by keywords, discipline, or university name.
+- 🎯 **Dynamic Filtering:** Filter results instantaneously based on language, study mode (full-time/part-time), tuition fee, and location.
+- 🎓 **University Comparison:** Easy side-by-side assessment of different academic programs.
+- 📱 **Responsive Design:** Optimized for both mobile devices and desktop views.
 
-## Code of Conduct
+---
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## 💻 Installation & Setup
 
-## Security Vulnerabilities
+To run this project locally, follow these steps:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/haidercse/czu_thesis_project.git](https://github.com/haidercse/czu_thesis_project.git)
+   cd czu_thesis_project
