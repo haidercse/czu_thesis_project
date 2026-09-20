@@ -9,11 +9,11 @@ An interactive web application developed as part of a Master's Thesis project at
 Here are some screenshots showcasing the application interface and core features:
 
 ### 1. Home / Search Page
-![Home Page](./home.png)
+![Home Page](home.png)
 *Search and filter Master's degree programs by field of study, university, and location.*
 
 ### 2. Program Details View
-![Program Details](./path-to-your-image/program-details.png)
+![Program Details](program-details.png)
 *Detailed breakdown of curriculum, admission requirements, tuition fees, and language prerequisites.*
 
 ### 3. Comparison & Filter System
