@@ -9,7 +9,7 @@ An interactive web application developed as part of a Master's Thesis project at
 Here are some screenshots showcasing the application interface and core features:
 
 ### 1. Home / Search Page
-![Home Page](./path-to-your-image/home.png)
+![Home Page](./home.png)
 *Search and filter Master's degree programs by field of study, university, and location.*
 
 ### 2. Program Details View
