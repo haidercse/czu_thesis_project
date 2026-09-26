@@ -18,4 +18,22 @@ class ApplicationStep extends Model
     protected $casts = [
         'applicable_countries' => 'array',
     ];
+
+    public function isApplicableToCountry(?string $country): bool
+    {
+        if (empty($this->applicable_countries)) {
+            return true;
+        }
+
+        if (blank($country)) {
+            return false;
+        }
+
+        return in_array($country, $this->applicable_countries, true);
+    }
+
+    public function isRequiredForStudent(?string $country): bool
+    {
+        return ! empty($this->related_document_type) || $this->isApplicableToCountry($country);
+    }
 }

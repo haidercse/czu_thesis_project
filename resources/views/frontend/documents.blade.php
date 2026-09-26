@@ -37,7 +37,14 @@
                     <div style="font-weight:600">{{ $d->original_filename }}</div>
                     <div class="muted" style="font-size:0.8rem">{{ $d->document_type }} -
                         {{ round($d->file_size / 1024, 1) }} KB</div>
+                    @if($d->review_status)
+                        <div class="muted" style="font-size:0.8rem; margin-top:0.3rem;"><strong>{{ ucfirst(str_replace('_', ' ', $d->review_status)) }}</strong></div>
+                        @if($d->review_comment)
+                            <div class="muted" style="font-size:0.8rem">{{ $d->review_comment }}</div>
+                        @endif
+                    @endif
                 </div>
+                <a href="{{ route('documents.view', $d) }}" target="_blank" rel="noopener noreferrer" class="btn btn-ghost btn-sm">View</a>
                 <a href="{{ route('documents.download', $d) }}" class="btn btn-ghost btn-sm">Download</a>
                 <button class="btn btn-ghost btn-sm remove-doc" data-id="{{ $d->id }}">Remove</button>
             </div>

@@ -490,7 +490,7 @@
         margin: 0 8px;
     }
     table.dbkit-table tr {
-        height: 64px;
+        height: auto;
     }
     .lts-thumb {
         margin-bottom: 15px;
@@ -670,7 +670,7 @@
         margin: 10px 0;
     }
     table.dbkit-table tr {
-        height: 63px;
+        height: auto;
     }
     /* blog */
     .lts-content h2 a {

@@ -21,8 +21,24 @@
                     <li class="{{ request()->routeIs('admin.users.*') ? 'active' : '' }}">
                         <a href="{{ route('admin.users.index') }}"><i class="ti-user"></i><span>Users</span></a>
                     </li>
+                    @if (auth()->user()->is_admin || auth()->user()->hasRole('Super Admin'))
+                        <li class="{{ request()->routeIs('admin.roles.*', 'admin.permissions.*') ? 'active' : '' }}">
+                            <a href="javascript:void(0)"><i class="ti-settings"></i><span>Roles &amp; Permissions</span><i class="ti-angle-down"></i></a>
+                            <ul class="collapse">
+                                <li class="{{ request()->routeIs('admin.roles.*') ? 'active' : '' }}">
+                                    <a href="{{ route('admin.roles.index') }}">Roles</a>
+                                </li>
+                                <li class="{{ request()->routeIs('admin.permissions.*') ? 'active' : '' }}">
+                                    <a href="{{ route('admin.permissions.index') }}">Permissions</a>
+                                </li>
+                            </ul>
+                        </li>
+                    @endif
                     <li class="{{ request()->routeIs('admin.applications.*') ? 'active' : '' }}">
                         <a href="{{ route('admin.applications.index') }}"><i class="ti-files"></i><span>Applications</span></a>
+                    </li>
+                    <li class="{{ request()->routeIs('admin.documents.*') ? 'active' : '' }}">
+                        <a href="{{ route('admin.documents.review.index') }}"><i class="ti-folder"></i><span>Document Review</span></a>
                     </li>
                 </ul>
             </nav>

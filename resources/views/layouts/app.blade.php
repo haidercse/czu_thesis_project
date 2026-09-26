@@ -22,6 +22,10 @@
                     class="{{ request()->routeIs('dashboard') ? 'active' : '' }}">Dashboard</a>
                 <a href="{{ route('programs.index') }}"
                     class="{{ request()->routeIs('programs.index', 'programs.compare') ? 'active' : '' }}">Program search</a>
+                <a href="{{ route('recommendations.index') }}"
+                    class="{{ request()->routeIs('recommendations.index') ? 'active' : '' }}">Recommended programs</a>
+                <a href="{{ route('saved-programs.index') }}"
+                    class="{{ request()->routeIs('saved-programs.index') ? 'active' : '' }}">Saved programs</a>
                 <a href="{{ route('profile.edit') }}"
                     class="{{ request()->routeIs('profile.edit') ? 'active' : '' }}">Profile</a>
                 <a href="{{ route('applications.index') }}"

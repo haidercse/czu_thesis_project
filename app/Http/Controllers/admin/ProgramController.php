@@ -28,11 +28,33 @@ class ProgramController extends Controller
     {
         $validated = $request->validate([
             'university_id' => 'required|exists:universities,id',
-            'program_name' => 'required|string|max:255',
+            'program_name' => [
+                'required',
+                'string',
+                'max:255',
+                function ($attribute, $value, $fail) use ($request) {
+                    $normalized = strtolower(trim((string) $value));
+
+                    if ($normalized === '') {
+                        return;
+                    }
+
+                    $exists = Program::query()
+                        ->where('university_id', $request->input('university_id'))
+                        ->whereRaw('LOWER(TRIM(program_name)) = ?', [$normalized])
+                        ->exists();
+
+                    if ($exists) {
+                        $fail('A program with this name already exists for the selected university.');
+                    }
+                },
+            ],
             'field_of_study' => 'required|string|max:255',
-            'tuition_fee_annual' => 'required|numeric|min:0',
-            'application_deadline' => 'required|date',
+            'tuition_fee_annual' => ['required', 'numeric', 'min:0', 'max:1000000'],
+            'application_deadline' => 'nullable|date',
             'language_proficiency_requirement' => 'nullable|string|max:255',
+            'minimum_gpa' => 'nullable|numeric|min:0|max:4',
+            'official_source_url' => ['nullable', 'url', 'max:255'],
         ]);
 
         $program = Program::create($validated);
@@ -66,11 +88,34 @@ class ProgramController extends Controller
     {
         $validated = $request->validate([
             'university_id' => 'required|exists:universities,id',
-            'program_name' => 'required|string|max:255',
+            'program_name' => [
+                'required',
+                'string',
+                'max:255',
+                function ($attribute, $value, $fail) use ($request, $program) {
+                    $normalized = strtolower(trim((string) $value));
+
+                    if ($normalized === '') {
+                        return;
+                    }
+
+                    $exists = Program::query()
+                        ->where('university_id', $request->input('university_id'))
+                        ->whereRaw('LOWER(TRIM(program_name)) = ?', [$normalized])
+                        ->whereKeyNot($program->getKey())
+                        ->exists();
+
+                    if ($exists) {
+                        $fail('A program with this name already exists for the selected university.');
+                    }
+                },
+            ],
             'field_of_study' => 'required|string|max:255',
-            'tuition_fee_annual' => 'required|numeric|min:0',
-            'application_deadline' => 'required|date',
+            'tuition_fee_annual' => ['required', 'numeric', 'min:0', 'max:1000000'],
+            'application_deadline' => 'nullable|date',
             'language_proficiency_requirement' => 'nullable|string|max:255',
+            'minimum_gpa' => 'nullable|numeric|min:0|max:4',
+            'official_source_url' => ['nullable', 'url', 'max:255'],
         ]);
 
         $program->update($validated);

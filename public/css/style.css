@@ -355,6 +355,36 @@ input:focus, select:focus, textarea:focus {
 }
 .dropzone.drag-over { border-color: var(--gold); background: var(--gold-tint); }
 
+.recommendation-list { display: grid; gap: 1rem; }
+.recommendation-card { margin-bottom: 0; }
+.recommendation-card__header,
+.recommendation-card__footer {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.recommendation-card__header h2 { margin: 0.2rem 0; }
+.eyebrow {
+  margin: 0;
+  color: var(--gold);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.recommendation-score { color: var(--navy); white-space: nowrap; }
+.recommendation-reasons { margin: 1rem 0; padding-left: 1.2rem; color: var(--slate); }
+.recommendation-card__footer {
+  align-items: center;
+  border-top: 1px solid var(--line);
+  padding-top: 1rem;
+}
+@media (max-width: 640px) {
+  .recommendation-card__header,
+  .recommendation-card__footer { align-items: flex-start; flex-direction: column; }
+}
+
 .doc-row {
   display: grid;
   grid-template-columns: auto 1fr auto auto;

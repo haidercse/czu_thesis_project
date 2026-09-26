@@ -23,9 +23,28 @@ class UniversityController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                function ($attribute, $value, $fail) use ($request) {
+                    $normalized = strtolower(trim((string) $value));
+
+                    if ($normalized === '') {
+                        return;
+                    }
+
+                    $exists = University::query()
+                        ->whereRaw('LOWER(TRIM(name)) = ?', [$normalized])
+                        ->exists();
+
+                    if ($exists) {
+                        $fail('The university name already exists.');
+                    }
+                },
+            ],
             'location' => 'required|string|max:255',
-            'website_url' => 'nullable|url',
+            'website_url' => ['nullable', 'url', 'max:255'],
         ]);
 
         $university = University::create($validated);
@@ -56,9 +75,29 @@ class UniversityController extends Controller
     public function update(Request $request, University $university)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                function ($attribute, $value, $fail) use ($university, $request) {
+                    $normalized = strtolower(trim((string) $value));
+
+                    if ($normalized === '') {
+                        return;
+                    }
+
+                    $exists = University::query()
+                        ->whereRaw('LOWER(TRIM(name)) = ?', [$normalized])
+                        ->whereKeyNot($university->getKey())
+                        ->exists();
+
+                    if ($exists) {
+                        $fail('The university name already exists.');
+                    }
+                },
+            ],
             'location' => 'required|string|max:255',
-            'website_url' => 'nullable|url',
+            'website_url' => ['nullable', 'url', 'max:255'],
         ]);
 
         $university->update($validated);

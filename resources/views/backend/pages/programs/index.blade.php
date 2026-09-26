@@ -103,6 +103,16 @@
                         <input type="text" name="language_proficiency_requirement" id="language_proficiency_requirement" class="form-control">
                         <small class="text-danger d-block" data-error-for="language_proficiency_requirement"></small>
                     </div>
+                    <div class="form-group">
+                        <label for="program_minimum_gpa">Minimum GPA</label>
+                        <input type="number" step="0.01" min="0" max="4" name="minimum_gpa" id="program_minimum_gpa" class="form-control">
+                        <small class="text-danger d-block" data-error-for="minimum_gpa"></small>
+                    </div>
+                    <div class="form-group">
+                        <label for="official_source_url">Official Source URL</label>
+                        <input type="url" name="official_source_url" id="official_source_url" class="form-control" placeholder="https://...">
+                        <small class="text-danger d-block" data-error-for="official_source_url"></small>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -127,6 +137,21 @@
     const programMethod = $('#programMethod');
     const programSubmitBtn = $('#programSubmitBtn');
 
+    function programRow(program) {
+        const row = $('<tr>').attr('data-id', program.id);
+        row.append($('<td>').text(program.program_name));
+        row.append($('<td>').text(program.university ? program.university.name : 'Unknown university'));
+        row.append($('<td>').text(program.field_of_study));
+        row.append($('<td>').text(Number(program.tuition_fee_annual).toFixed(2)));
+        row.append($('<td>').text(program.application_deadline));
+        const actions = $('<td>');
+        actions.append($('<button>', { type: 'button', class: 'btn btn-info btn-xs edit-program', 'data-id': program.id }).html('<i class="ti-pencil"></i> Edit'));
+        actions.append(' ');
+        actions.append($('<button>', { type: 'button', class: 'btn btn-danger btn-xs delete-program', 'data-id': program.id }).html('<i class="ti-trash"></i> Delete'));
+        row.append(actions);
+        return row;
+    }
+
     $('#programModal').on('hidden.bs.modal', function () {
         programForm[0].reset();
         programMethod.val('POST');
@@ -145,6 +170,8 @@
             $('#tuition_fee_annual').val(program.tuition_fee_annual);
             $('#application_deadline').val(program.application_deadline);
             $('#language_proficiency_requirement').val(program.language_proficiency_requirement || '');
+            $('#program_minimum_gpa').val(program.minimum_gpa || '');
+            $('#official_source_url').val(program.official_source_url || '');
             programMethod.val('PUT');
             $('#programModalTitle').text('Edit Program');
             programSubmitBtn.text('Update');
@@ -183,8 +210,15 @@
             data: programForm.serialize() + '&_method=' + method,
             success: function (res) {
                 programModal.modal('hide');
+                const row = programRow(res.data);
+                const existingRow = $('tr[data-id="' + res.data.id + '"]');
+                if (existingRow.length) {
+                    existingRow.replaceWith(row);
+                } else {
+                    $('#programsTable tr:has(td[colspan])').remove();
+                    $('#programsTable').append(row);
+                }
                 alert(res.message || 'Program saved.');
-                window.location.reload();
             },
             error: function (xhr) {
                 const errors = xhr.responseJSON?.errors || {};

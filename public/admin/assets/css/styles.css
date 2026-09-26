@@ -916,35 +916,29 @@ ul.breadcrumbs {
 /*-------------------- 2.6 Market value ------------------- */
 
 .market-status-table {
-    overflow: hidden;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
 }
 
 table.dbkit-table {
     width: 100%;
+    min-width: 720px;
+    border-collapse: separate;
+    border-spacing: 0 6px;
 }
 
 table.dbkit-table tr {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: nowrap;
-        flex-wrap: nowrap;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    height: 71px;
+    height: auto;
     border: 1px solid transparent;
-    padding: 0 30px;
-    margin: 20px 2px 6px;
     background: #f5f8f9;
 }
 
 table.dbkit-table tr th,
 table.dbkit-table tr td {
     border-top: none!important;
+    padding: 16px 20px;
+    vertical-align: middle;
+    white-space: nowrap;
 }
 
 table.dbkit-table tr:hover {
@@ -957,6 +951,30 @@ table.dbkit-table tr td {
     letter-spacing: 0;
     color: #616161;
     min-width: 141px;
+}
+
+table.dbkit-table tr.heading-td td,
+table.dbkit-table tr.heading-td th {
+    font-weight: 600;
+    color: #323232;
+    background: #eef2f4;
+}
+
+table.dbkit-table tr td:last-child,
+table.dbkit-table tr th:last-child {
+    min-width: 180px;
+}
+
+@media (max-width: 767px) {
+    table.dbkit-table {
+        min-width: 640px;
+    }
+
+    table.dbkit-table tr th,
+    table.dbkit-table tr td {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
 }
 
 .mv-icon img {

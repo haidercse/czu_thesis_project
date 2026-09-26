@@ -19,7 +19,12 @@
                         <tr>
                             <th>Program</th>
                             @foreach ($programs as $program)
-                                <th>{{ $program->program_name }}</th>
+                                <th>
+                                    {{ $program->program_name }}
+                                    <div style="margin-top:0.5rem;">
+                                        <button type="button" class="btn btn-ghost btn-sm remove-compare" data-id="{{ $program->id }}">Remove</button>
+                                    </div>
+                                </th>
                             @endforeach
                         </tr>
                     </thead>
@@ -27,25 +32,36 @@
                         <tr>
                             <th>University</th>
                             @foreach ($programs as $program)
-                                <td>{{ $program->university->name }}<br><span class="muted">{{ $program->university->location }}</span></td>
+                                <td>
+                                    {{ $program->university->name ?? 'Not specified' }}
+                                    @if ($program->university && $program->university->location)
+                                        <br><span class="muted">{{ $program->university->location }}</span>
+                                    @endif
+                                </td>
                             @endforeach
                         </tr>
                         <tr>
-                            <th>Tuition</th>
+                            <th>City</th>
                             @foreach ($programs as $program)
-                                <td>EUR {{ number_format($program->tuition_fee_annual) }} / year</td>
-                            @endforeach
-                        </tr>
-                        <tr>
-                            <th>Deadline</th>
-                            @foreach ($programs as $program)
-                                <td>{{ $program->application_deadline }}</td>
+                                <td>{{ $program->university->location ?? 'Not specified' }}</td>
                             @endforeach
                         </tr>
                         <tr>
                             <th>Field</th>
                             @foreach ($programs as $program)
-                                <td>{{ $program->field_of_study }}</td>
+                                <td>{{ $program->field_of_study ?? 'Not specified' }}</td>
+                            @endforeach
+                        </tr>
+                        <tr>
+                            <th>Tuition</th>
+                            @foreach ($programs as $program)
+                                <td>{{ $program->tuition_fee_annual ? 'EUR ' . number_format($program->tuition_fee_annual) . ' / year' : 'Not specified' }}</td>
+                            @endforeach
+                        </tr>
+                        <tr>
+                            <th>Application fee</th>
+                            @foreach ($programs as $program)
+                                <td>Not specified</td>
                             @endforeach
                         </tr>
                         <tr>
@@ -54,9 +70,46 @@
                                 <td>{{ $program->language_proficiency_requirement ?? 'Not specified' }}</td>
                             @endforeach
                         </tr>
+                        <tr>
+                            <th>Minimum GPA</th>
+                            @foreach ($programs as $program)
+                                <td>{{ $program->minimum_gpa ? number_format($program->minimum_gpa, 2) : 'Not specified' }}</td>
+                            @endforeach
+                        </tr>
+                        <tr>
+                            <th>Application deadline</th>
+                            @foreach ($programs as $program)
+                                <td>{{ $program->application_deadline ?? 'Not specified' }}</td>
+                            @endforeach
+                        </tr>
                     </tbody>
                 </table>
             </div>
         @endif
     </div>
 @endsection
+
+@push('scripts')
+    <script>
+        const compareKey = 'compare_programs';
+
+        function readIds() {
+            try {
+                return JSON.parse(sessionStorage.getItem(compareKey)) || [];
+            } catch (e) {
+                return [];
+            }
+        }
+
+        function writeIds(ids) {
+            sessionStorage.setItem(compareKey, JSON.stringify(ids));
+        }
+
+        $('.remove-compare').on('click', function () {
+            const id = Number($(this).data('id'));
+            const nextIds = readIds().filter(item => item !== id);
+            writeIds(nextIds);
+            window.location.reload();
+        });
+    </script>
+@endpush

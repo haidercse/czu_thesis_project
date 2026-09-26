@@ -101,6 +101,40 @@
                 </div>
             </div>
         </div>
+
+        <div class="row mt-5 mb-5">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h4 class="header-title">Latest Uploaded Documents</h4>
+                        <div class="market-status-table mt-4">
+                            <div class="table-responsive">
+                                <table class="dbkit-table">
+                                    <tr class="heading-td">
+                                        <td>Student</td>
+                                        <td>Document</td>
+                                        <td>Type</td>
+                                        <td>Uploaded</td>
+                                    </tr>
+                                    @forelse ($recentDocuments as $document)
+                                        <tr>
+                                            <td>{{ $document->user ? $document->user->name : 'Unknown user' }}</td>
+                                            <td>{{ $document->original_filename }}</td>
+                                            <td>{{ ucfirst(str_replace('_', ' ', $document->document_type)) }}</td>
+                                            <td>{{ $document->created_at->format('Y-m-d H:i') }}</td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td colspan="4">No documents uploaded yet.</td>
+                                        </tr>
+                                    @endforelse
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 @endsection

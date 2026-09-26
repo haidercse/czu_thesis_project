@@ -1,3 +1,58 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.recommendation-list {
+	display: grid;
+	gap: 1rem;
+}
+
+.recommendation-card {
+	margin-bottom: 0;
+}
+
+.recommendation-card__header,
+.recommendation-card__footer {
+	display: flex;
+	justify-content: space-between;
+	gap: 1rem;
+	align-items: flex-start;
+}
+
+.recommendation-card__header h2 {
+	margin: 0.2rem 0;
+}
+
+.eyebrow {
+	margin: 0;
+	color: var(--gold, #b18b4a);
+	font-size: 0.78rem;
+	font-weight: 700;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+}
+
+.recommendation-score {
+	color: var(--ink, #1d2635);
+	white-space: nowrap;
+}
+
+.recommendation-reasons {
+	margin: 1rem 0;
+	padding-left: 1.2rem;
+	color: var(--muted, #687386);
+}
+
+.recommendation-card__footer {
+	align-items: center;
+	border-top: 1px solid rgba(29, 38, 53, 0.1);
+	padding-top: 1rem;
+}
+
+@media (max-width: 640px) {
+	.recommendation-card__header,
+	.recommendation-card__footer {
+		align-items: flex-start;
+		flex-direction: column;
+	}
+}

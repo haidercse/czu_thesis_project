@@ -19,7 +19,7 @@ class CreateProgramsTable extends Migration
             $table->string('program_name');
             $table->string('field_of_study');
             $table->decimal('tuition_fee_annual', 8, 2);
-            $table->date('application_deadline');
+            $table->date('application_deadline')->nullable();
             $table->string('language_proficiency_requirement')->nullable();
             $table->timestamps();
         });

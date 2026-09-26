@@ -12,6 +12,7 @@ class Application extends Model
     public function user() { return $this->belongsTo(User::class); }
     public function program() { return $this->belongsTo(Program::class); }
     public function steps() { return $this->hasMany(UserApplicationStep::class); }
+    public function documents() { return $this->hasMany(Document::class); }
 
     public function getProgressPercentageAttribute()
     {

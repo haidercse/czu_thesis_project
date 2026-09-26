@@ -16,7 +16,7 @@
                         </div>
                         <div class="market-status-table mt-4">
                             <div class="table-responsive">
-                                <table class="dbkit-table" id="universitiesTable">
+                                <table class="dbkit-table" id="dataTable">
                                     <tr class="heading-td">
                                         <td>Name</td>
                                         <td>Location</td>
@@ -103,6 +103,19 @@
     const universityMethod = $('#universityMethod');
     const universitySubmitBtn = $('#universitySubmitBtn');
 
+    function universityRow(university) {
+        const row = $('<tr>').attr('data-id', university.id);
+        row.append($('<td>').text(university.name));
+        row.append($('<td>').text(university.location));
+        row.append($('<td>').text(university.programs_count || 0));
+        const actions = $('<td>');
+        actions.append($('<button>', { type: 'button', class: 'btn btn-info btn-xs edit-university', 'data-id': university.id }).html('<i class="ti-pencil"></i> Edit'));
+        actions.append(' ');
+        actions.append($('<button>', { type: 'button', class: 'btn btn-danger btn-xs delete-university', 'data-id': university.id }).html('<i class="ti-trash"></i> Delete'));
+        row.append(actions);
+        return row;
+    }
+
     $('#universityModal').on('hidden.bs.modal', function () {
         universityForm[0].reset();
         universityMethod.val('POST');
@@ -157,8 +170,15 @@
             data: payload + '&_method=' + method,
             success: function (res) {
                 universityModal.modal('hide');
+                const row = universityRow(res.data);
+                const existingRow = $('tr[data-id="' + res.data.id + '"]');
+                if (existingRow.length) {
+                    existingRow.replaceWith(row);
+                } else {
+                    $('#universitiesTable tr:has(td[colspan])').remove();
+                    $('#universitiesTable').append(row);
+                }
                 alert(res.message || 'University saved.');
-                window.location.reload();
             },
             error: function (xhr) {
                 const errors = xhr.responseJSON?.errors || {};

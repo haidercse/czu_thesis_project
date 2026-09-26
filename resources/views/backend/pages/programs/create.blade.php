@@ -48,6 +48,11 @@
                                 <input type="text" name="language_proficiency_requirement" id="language_proficiency_requirement" class="form-control" value="{{ old('language_proficiency_requirement') }}">
                                 @error('language_proficiency_requirement')<span class="text-danger">{{ $message }}</span>@enderror
                             </div>
+                            <div class="form-group">
+                                <label for="minimum_gpa">Minimum GPA</label>
+                                <input type="number" step="0.01" min="0" max="4" name="minimum_gpa" id="minimum_gpa" class="form-control" value="{{ old('minimum_gpa') }}">
+                                @error('minimum_gpa')<span class="text-danger">{{ $message }}</span>@enderror
+                            </div>
                             <button type="submit" class="btn btn-primary mt-3"><i class="ti-save"></i> Save</button>
                             <a href="{{ route('admin.programs.index') }}" class="btn btn-secondary mt-3">Cancel</a>
                         </form>
